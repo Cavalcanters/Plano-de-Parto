@@ -257,3 +257,20 @@
 <h3>Observações e Detalhes</h3>
 <label>Além de tudo que assinalei acima, gostaria de registrar as seguintes observações e detalhes:</label>
 <textarea id="observacoes" name="observacoes" rows="4" placeholder="Digite aqui suas observações"></textarea>
+
+<button type="button" id="generatePDF">Enviar</button>
+</form>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+    document.getElementById('generatePDF').addEventListener('click', function () {
+        // Capturar os dados do formulário
+        const form = document.getElementById('birthPlanForm');
+        const formData = new FormData(form);
+        
+        // Montar o conteúdo do PDF como uma string
+        let pdfContent = "Plano de Parto\n\n";
+
+        formData.forEach((value, key) => {
+            pdfContent += `${key}: ${value}\n`;
+        });
