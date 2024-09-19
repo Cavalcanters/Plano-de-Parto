@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano de Parto</title>
+    <style>
+      /* Estiliza o grupo de opções */
+    .radio-group {
+        margin-bottom: 1.5em; /* Espaçamento entre grupos */
+    }
+
+    /* Estiliza as opções de rádio e seus labels */
+    .radio-group label {
+        display: flex; /* Alinha os inputs e textos horizontalmente */
+        align-items: center; /* Centraliza verticalmente os itens */
+        margin: 5px 0; /* Espaçamento entre opções */
+        cursor: pointer; /* Muda o cursor para pointer ao passar sobre as opções */
+    }
+
+    /* Estiliza os inputs de rádio */
+    .radio-group input[type="radio"] {
+        margin-right: 8px; /* Espaçamento entre o input e o texto */
+    }
+
+    /* Estiliza as áreas de texto */
+    textarea {
+        width: 100%; /* Largura total do contêiner */
+        margin-top: 5px; /* Espaçamento acima do textarea */
+        padding: 8px; /* Espaçamento interno para conforto ao digitar */
+        border: 1px solid #ccc; /* Borda para o textarea */
+        border-radius: 4px; /* Bordas arredondadas */
+        resize: vertical; /* Permite redimensionar apenas verticalmente */
+    }
+
+    </style>
+</head>
+<body>
+    <form action="/submit_plano_de_parto" method="POST">
+        <h2>Plano de Parto</h2>
+        
+        <label for="nome">Nome Completo:</label>
+        <input type="text" id="nome" name="nome" required>
+        
+        <label for="data-prevista">Data Prevista para o Parto:</label>
+        <input type="date" id="data-prevista" name="data-prevista" required>
+
+        <h3>Preferências durante o Trabalho de Parto</h3>
+        
+        <!-- Questão 1 -->
+        <label>Sobre ter uma veia "pega" (punção venosa) ou infusão contínua de soro:</label>
+        <div class="radio-group">
+            <label><input type="radio" name="veia-pega" value="nao-prefiro"> Prefiro não ter</label>
+            <label><input type="radio" name="veia-pega" value="prefiro-ter"> Prefiro ter</label>
+            <label><input type="radio" name="veia-pega" value="sem-preferencia"> Não tenho preferência</label>
+        </div>
+
+        <!-- Questão 2 -->
+        <label>Sobre ter infusão de soro com ocitocina:</label>
+        <div class="radio-group">
+            <label><input type="radio" name="ocitocina" value="nao-prefiro"> Prefiro não ter</label>
+            <label><input type="radio" name="ocitocina" value="acelerar-parto"> Gostaria de ter para acelerar o parto</label>
+            <label><input type="radio" name="ocitocina" value="sem-preferencia"> Não tenho preferência</label>
+            <label><input type="radio" name="ocitocina" value="corrigir-trabalho"> Prefiro ter somente para corrigir o trabalho de parto quando não estiver evoluindo bem</label>
+        </div>
+
+        <!-- Questão 3 -->
+        <label>Sobre ter a bolsa das águas rompidas artificialmente:</label>
+        <div class="radio-group">
+            <label><input type="radio" name="amniorrexe" value="nao-prefiro"> Prefiro não ter</label>
+            <label><input type="radio" name="amniorrexe" value="acelerar-parto"> Gostaria de ter para acelerar o parto</label>
+            <label><input type="radio" name="amniorrexe" value="sem-preferencia"> Não tenho preferência</label>
+            <label><input type="radio" name="amniorrexe" value="corrigir-trabalho"> Prefiro ter somente para corrigir o trabalho de parto quando não estiver evoluindo bem</label>
+        </div>
+
+        <!-- Questão 4 -->
+        <label>Se a minha bolsa das águas romper espontaneamente antes do trabalho de parto:</label>
+        <div class="radio-group">
+            <label><input type="radio" name="ruptura-prematura" value="iniciar-inducao"> Gostaria de iniciar a indução do parto em seguida, se não houver contraindicação</label>
+            <label><input type="radio" name="ruptura-prematura" value="esperar-espontaneo"> Prefiro entrar espontaneamente em trabalho de parto</label>
+            <label><input type="radio" name="ruptura-prematura" value="sem-preferencia"> Não tenho preferência</label>
+        </div>
+
+        <!-- Questão 5 -->
+        <label>Se eu chegar ao final da gestação e não entrar espontaneamente em trabalho de parto:</label>
+        <div class="radio-group">
+            <label><input type="radio" name="final-gestacao" value="parto-induzido"> Gostaria de ter meu parto induzido</label>
+            <label><input type="radio" name="final-gestacao" value="realizar-cesarea"> Não gostaria de ter o parto induzido, preferindo realizar cesárea</label>
+            <label><input type="radio" name="final-gestacao" value="sem-preferencia"> Não tenho preferência</label>
+            <label><input type="radio" name="final-gestacao" value="outra-alternativa"> Outra alternativa:</label>
+            <textarea id="outra-alternativa-texto" name="outra-alternativa-texto" rows="2" placeholder="Digite aqui sua alternativa"></textarea>
+        </div>
+
+        <!-- Questão 6 -->
+        <h3>Durante o Trabalho de Parto</h3>
+        <label>Quanto à alimentação:</label>
+        <div class="radio-group">
+            <label><input type="radio" name="alimentacao" value="ingerir-liquidos"> Gostaria de ter liberdade para ingerir líquidos</label>
+            <label><input type="radio" name="alimentacao" value="ficar-jejum"> Prefiro ficar em jejum</label>
+            <label><input type="radio" name="alimentacao" value="ver-na-hora"> Prefiro ver como me sentirei na hora</label>
+        </div>
+        
+        <label>Quanto à deambulação:</label>
+        <div class="radio-group">
+            <label><input type="radio" name="deambulacao" value="liberdade-movimento"> Gostaria de ter liberdade para caminhar e me movimentar</label>
+            <label><input type="radio" name="deambulacao" value="ficar-deitada"> Prefiro ficar mais deitada</label>
+            <label><input type="radio" name="deambulacao" value="ver-na-hora"> Prefiro ver como me sentirei na hora</label>
+        </div>
+        
+        <label>Quanto à ausculta dos batimentos cardíacos do bebê:</label>
+        <div class="radio-group">
+            <label><input type="radio" name="batimentos-bebe" value="nao-continuo"> Não gostaria de monitorização contínua</label>
+            <label><input type="radio" name="batimentos-bebe" value="continuo"> Não me oponho a monitorização contínua</label>
+            <label><input type="radio" name="batimentos-bebe" value="sem-preferencia"> Não tenho preferência</label>
+        </div>
+        
+        <!-- Questão 7 -->
+        <label>Se eu sentir dor:</label>
+        <div class="radio-group">
+            <label><input type="radio" name="dor" value="nao-farmacologico"> Gostaria de usar apenas métodos não-farmacológicos</label>
+            <label><input type="radio" name="dor" value="analgesicos"> Gostaria que me oferecessem analgésicos</label>
+            <label><input type="radio" name="dor" value="analgesia-obstetrica"> Gostaria de fazer analgesia obstétrica raqui-peridural</label>
+            <label><input type="radio" name="dor" value="ver-na-hora"> Prefiro ver como me sentirei na hora</label>
+        </div>
+        
+              <!-- Questão 8 -->
+<h3>Na Hora do Parto</h3>
+<label>Quanto à posição:</label>
+<div class="radio-group">
+    <label><input type="radio" name="posicao-parto" value="preferencia-posicao"> Acho que vou preferir ficar na seguinte posição:</label>
+    <textarea id="posicao-parto-texto" name="posicao-parto-texto" rows="2" placeholder="Digite aqui sua preferência"></textarea>
+    <label><input type="radio" name="posicao-parto" value="ver-na-hora"> Prefiro ver como me sentirei na hora</label>
+    <label><input type="radio" name="posicao-parto" value="sem-preferencia"> Não tenho preferências especiais sobre a posição na hora do parto</label>
+</div>
+
+<label>Quanto à orientação sobre fazer força:</label>
+<div class="radio-group">
+    <label><input type="radio" name="fazer-forca" value="forca-durante-contracao"> Prefiro fazer força só durante as contrações, quando eu sentir vontade, em vez de ser guiada</label>
+    <label><input type="radio" name="fazer-forca" value="orientacao"> Gostaria que me orientassem como fazer força na hora</label>
+</div>
+
+<label>Quanto ao ambiente:</label>
+<div class="radio-group">
+    <label><input type="radio" name="ambiente" value="preferencia-ambiente"> Gostaria que o ambiente ou local tivesse:</label>
+    <textarea id="ambiente-texto" name="ambiente-texto" rows="2" placeholder="Digite aqui sua preferência"></textarea>
+    <label><input type="radio" name="ambiente" value="sem-preferencia"> Não tenho preferência</label>
+</div>
+
+<label>Quanto à episiotomia (corte do períneo):</label>
+<div class="radio-group">
+    <label><input type="radio" name="episiotomia" value="nao-rotina"> Prefiro que não seja realizada a episiotomia como rotina, somente se muito necessário</label>
+    <label><input type="radio" name="episiotomia" value="sem-oposicao"> Não tenho qualquer oposição à episiotomia</label>
+</div>
+
+<label>Quanto ao uso de instrumentos:</label>
+<div class="radio-group">
+    <label><input type="radio" name="instrumentos" value="uso-forceps-vacuo"> Gostaria que fosse usado fórceps ou vácuo-extrator para acelerar a saída do bebê</label>
+    <label><input type="radio" name="instrumentos" value="nao-uso-forceps-vacuo"> Não gostaria que fosse usado fórceps ou vácuo-extrator no nascimento, mas sei que muitas vezes é necessário no parto vaginal</label>
+    <label><input type="radio" name="instrumentos" value="sem-preferencia"> Não tenho preferência quanto a fórceps ou vácuo-extrator no nascimento</label>
+</div>
+
+<!-- Questão 9 -->
+<h3>Se for necessário ou decidido por fazer uma cesariana</h3>
+
+<label>Quanto ao agendamento:</label>
+<div class="radio-group">
+    <label><input type="radio" name="agendamento" value="trabalho-espontaneo"> Gostaria de entrar em trabalho de parto espontaneamente, ao invés de marcar uma cesariana</label>
+    <label><input type="radio" name="agendamento" value="agendar-cesariana"> Prefiro agendar a cesariana, se for possível</label>
+    <label><input type="radio" name="agendamento" value="sem-preferencia"> Não tenho preferência</label>
+</div>
+
+<label>Durante o ato cirúrgico:</label>
+<div class="radio-group">
+    <label><input type="radio" name="ato-cirurgico" value="ver-bebe-nascer"> Gostaria que o pano/campo cirúrgico fosse abaixado para que eu possa ver o bebê nascer</label>
+    <label><input type="radio" name="ato-cirurgico" value="nao-ver-bebe-nascer"> Prefiro não ver as partes cirúrgicas do nascimento, e que o bebê somente seja mostrado para mim após nascer</label>
+    <label><input type="radio" name="ato-cirurgico" value="sem-preferencia"> Não tenho preferência</label>
+</div>
+
+<div class="radio-group">
+    <label><input type="radio" name="maos-presas" value="nao-maos-presas"> Não gostaria que minhas mãos ficassem presas durante a cesariana</label>
+    <label><input type="radio" name="maos-presas" value="maos-presas"> Tenho medo de encostar sem querer no campo cirúrgico, por isso, prefiro que minhas mãos fiquem presas</label>
+    <label><input type="radio" name="maos-presas" value="sem-preferencia"> Não tenho preferência</label>
+</div>
+
+<!-- Questão 10 -->
+<h3>Assim que nascer o bebê (não importa se por parto vaginal ou cesariana)</h3>
+
+<div class="radio-group">
+    <label><input type="radio" name="bebê-nascer" value="colo-imediatamente"> Gostaria que ele fosse colocado imediatamente no meu colo, se estiver tudo bem</label>
+    <label><input type="radio" name="bebê-nascer" value="sem-preferencia"> Não tenho preferência</label>
+</div>
+
+<div class="radio-group">
+    <label><input type="radio" name="tempo-com-bebe" value="maximo-possivel"> Gostaria de ficar o máximo possível com o bebê ainda na sala de parto e na sala de recuperação, sem interrupções</label>
+    <label><input type="radio" name="tempo-com-bebe" value="bebê-levado-banho"> Gostaria (ou não me importo) que o bebê seja levado em seguida para banho e cuidados, enquanto descanso um pouco (mas sei que existe uma rotina do hospital que deve ser respeitada)</label>
+    <label><input type="radio" name="tempo-com-bebe" value="sem-preferencia"> Não tenho preferência</label>
+</div>
+
+<!-- Questão 11 -->
+<h3>Após o nascimento do bebê</h3>
+
+<label>Quanto à placenta:</label>
+<div class="radio-group">
+    <label><input type="radio" name="placenta" value="expulsao-espontanea"> Prefiro aguardar a expulsão espontânea da placenta, sem manobras, tração do cordão ou massagens</label>
+    <label><input type="radio" name="placenta" value="ajudar-expulsao"> Prefiro que sejam feitas manobras para ajudar a placenta a sair (como tração do cordão ou massagens), como recomenda a Organização Mundial de Saúde</label>
+    <label><input type="radio" name="placenta" value="sem-preferencia"> Não tenho preferência</label>
+    <label><input type="radio" name="placenta" value="pedido-especial"> Com relação à placenta, eu tenho um pedido especial:</label>
+    <textarea id="placenta-pedido" name="placenta-pedido" rows="2" placeholder="Digite aqui seu pedido especial"></textarea>
+</div>
+
+<label>Quanto à administração de ocitocina:</label>
+<div class="radio-group">
+    <label><input type="radio" name="ocitocina-posparto" value="nao-administrar"> Não gostaria que fosse administrada ocitocina de rotina no pós-parto</label>
+    <label><input type="radio" name="ocitocina-posparto" value="administrar-prevenir-hemorragia"> Gostaria que fosse administrada ocitocina no pós-parto para prevenção de hemorragia, como recomenda a Organização Mundial de Saúde</label>
+    <label><input type="radio" name="ocitocina-posparto" value="sem-preferencia"> Não tenho preferência</label>
+</div>
+
+<!-- Questão 12 -->
+<h3>Sobre os cuidados com o bebê</h3>
+
+<label>Quanto à higiene do bebê:</label>
+<div class="radio-group">
+    <label><input type="radio" name="higiene-bebe" value="rotina-hospital"> Gostaria que fosse feita higiene do bebê conforme a rotina do hospital, assistido pelo meu acompanhante (se possível), salvo em situações especiais (HIV e Hepatite)</label>
+    <label><input type="radio" name="higiene-bebe" value="sem-banho-24h"> Não gostaria que fosse dado banho no bebê nas primeiras 24 horas</label>
+    <label><input type="radio" name="higiene-bebe" value="sem-preferencia"> Não tenho preferência</label>
+</div>
+
+<label>Quanto à aplicação de colírio de Nitrato de Prata:</label>
+<div class="radio-group">
+    <label><input type="radio" name="colirio" value="aplicacao-recomendada"> Não me oponho à aplicação do colírio, nos casos recomendados pelo Ministério da Saúde (após parto vaginal e nas bolsas rotas)</label>
+    <label><input type="radio" name="colirio" value="nao-aplicar"> Não gostaria que fosse aplicado colírio. Para que isso seja possível, sei que é obrigatório que eu já tenha coletado exame vaginal para clamídia e gonococo no final da gestação, e que esses exames sejam negativos.</label>
+    <label><input type="radio" name="colirio" value="sem-preferencia"> Não tenho preferência</label>
+</div>
+
+<label>Quanto à administração de vitamina K:</label>
+<div class="radio-group">
+    <label><input type="radio" name="vitamina-k" value="administracao-intramuscular"> Não me oponho à administração de vitamina K intramuscular, como recomendado pela Sociedade Brasileira de Pediatria</label>
+    <label><input type="radio" name="vitamina-k" value="administracao-oral"> Não gostaria que fosse aplicado vitamina K intramuscular. Prefiro que seja administrado a primeira dose por via oral no hospital. Para que isso seja possível, comprometo-me a administrar mais duas doses de vitamina K oral em casa (2ª dose em uma semana, 3ª dose em um mês). Nesse caso, existe a obrigatoriedade do preenchimento do Termo de Recusa à aplicação da vitamina K intramuscular.</label>
+    <label><input type="radio" name="vitamina-k" value="sem-preferencia"> Não tenho preferência</label>
+</div>
+
+<label>Quanto à amamentação:</label>
+<div class="radio-group">
+    <label><input type="radio" name="amamentacao" value="livre-demanda"> Quero amamentar o bebê sob livre demanda</label>
+    <label><input type="radio" name="amamentacao" value="horarios-fixos"> Quero tentar a amamentar o bebê em horários fixos</label>
+    <label><input type="radio" name="amamentacao" value="nao-amamentar"> Não quero e não vou amamentar o bebê</label>
+    <label><input type="radio" name="amamentacao" value="sem-preferencia"> Não tenho preferência</label>
+</div>
+
+<div class="radio-group">
+    <label><input type="radio" name="amamentacao-exclusiva" value="exclusiva"> Quero fazer amamentação exclusiva</label>
+    <label><input type="radio" name="amamentacao-exclusiva" value="complementar"> Não me importo em complementar a amamentação do bebê com fórmula láctea, caso esteja prescrito pela equipe de assistente</label>
+    <label><input type="radio" name="amamentacao-exclusiva" value="sem-preferencia"> Não tenho preferência</label>
+</div>
+
+<!-- Questão 13 -->
+<h3>Observações e Detalhes</h3>
+<label>Além de tudo que assinalei acima, gostaria de registrar as seguintes observações e detalhes:</label>
+<textarea id="observacoes" name="observacoes" rows="4" placeholder="Digite aqui suas observações"></textarea>
